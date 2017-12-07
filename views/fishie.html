@@ -51,6 +51,7 @@
 
     function render() {
       for (i = 0; i < food.length; i++) {
+        if ((Math.abs(food[i][0]-player.x)>canvas.width) || (Math.abs(food[i][1]-player.y)>canvas.height)) continue;
         ctx.beginPath();
         ctx.arc(food[i][0] - player.x, food[i][1] - player.y, food[i][2], 0, 2 * Math.PI, false);
         ctx.shadowColor = food[i][3];
@@ -134,21 +135,17 @@
       waterGradient.addColorStop(1, "#55aadd");
       ctx.fillStyle = waterGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      for (i = 0; i <= halfSize; i++) {
-        if (food.length > i + 2000 && food[i][2] > 0) {
-          food[i][2] -= 2
-        } else if (food.length > i + 2000 && food[i][2] === 0) {
-          food.shift()
-        }
+      
+      while (food.length<1000) {
+        makeFood(Math.floor((Math.random() - 0.5) * 10000), Math.floor((Math.random() - 0.5) * 10000), halfSize * 2, colors[Math.floor(Math.random() * colors.length)]);
       }
-      makeFood(Math.floor((Math.random() - 0.5) * 10000), Math.floor((Math.random() - 0.5) * 10000), halfSize * 2,
-        colors[Math.floor(Math.random() * colors.length)])
 
-      render()
+      render();
       if (speed === 2) {
         ctx.shadowBlur = 0
       } else {
-        ctx.shadowBlur = player.size * 5
+        ctx.shadowBlur = player.size * 15
+        ctx.shadowColor = colors[Math.floor(Math.random()*colors.length)]
       };
       if (player.tail - mouseAngle > Math.PI / 3) {
         if (player.tail - mouseAngle > Math.PI) {
@@ -163,7 +160,6 @@
           player.tail = mouseAngle - Math.PI / 3
         }
       };
-
       player.render(canvas.width / 2, canvas.height / 2, mouseAngle, player.tail - mouseAngle, player.size, "#8FD400",
         "#3AA655");
       if (player.tail < mouseAngle) {
