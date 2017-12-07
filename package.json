@@ -1,0 +1,20 @@
+{
+  "name": "fishfishfish",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owl10124/fishfishfish.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/owl10124/fishfishfish/issues"
+  },
+  "homepage": "https://github.com/owl10124/fishfishfish#readme"
+}
