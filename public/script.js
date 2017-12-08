@@ -13,14 +13,14 @@ function rotate_point(pointX, pointY, originX, originY, angle) {
 var canvas = document.getElementById("canvas");
 
 function fast() {
-  speed = 5;
+  speed = 20;
 }
 
 function slow() {
-  speed = 2;
+  speed = 5;
 }
 var ctx = canvas.getContext("2d");
-var speed = 2;
+var speed = 5;
 var colors = ["red", "orange", "gold", "green", "blue", "purple"]
 var food = []
 var halfSize = 5
@@ -116,12 +116,12 @@ function point() {
   ctx.fillStyle = waterGradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  while (food.length<1000) {
+  while (food.length<5000) {
     makeFood(Math.floor((Math.random() - 0.5) * 10000), Math.floor((Math.random() - 0.5) * 10000), halfSize * 2, colors[Math.floor(Math.random() * colors.length)]);
   }
 
   render();
-  if (speed === 2) {
+  if (speed === 5) {
     ctx.shadowBlur = 0
   } else {
     ctx.shadowBlur = player.size * 15
@@ -155,6 +155,11 @@ function point() {
   ctx.fillText("x:"+Math.round(player.x)+" y:"+Math.round(player.y)+" rotation:"+Math.round(mouseAngle/Math.PI*180)+" x value:"+Math.sin(mouseAngle), 5, 30);
   */
   player.x += Math.sin(mouseAngle) * speed;
+  if (player.x+canvas.width/2>5000) player.x=5000-canvas.width/2;
+  if (player.x+canvas.width/2<-5000) player.x=-5000-canvas.width/2;
+
   player.y -= Math.cos(mouseAngle) * speed;
+  if (player.y+canvas.height/2>5000) player.y=5000-canvas.height/2;
+  if (player.y+canvas.height/2<-5000) player.y=-5000-canvas.height/2;
 }
 setInterval(point, 10);
