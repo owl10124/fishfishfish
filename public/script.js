@@ -1,9 +1,10 @@
 var mouseX = 0;
 var mouseY = 0;
-var checkXY = function (e) {
+
+window.addEventListener('mousemove', (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
-}
+})
 
 function rotate_point(pointX, pointY, originX, originY, angle) {
   return [Math.cos(angle) * (pointX - originX) - Math.sin(angle) * (pointY - originY) + originX, Math.sin(angle) *
@@ -158,7 +159,23 @@ function point() {
   player.y -= Math.cos(mouseAngle) * speed;
 }
 
-(function(){
+var splscr_mv = setInterval(() => {
+  point();
+  player.x = 0;
+  player.y = 0;
+}, 10);
+
+function startgame() {
+  clearInterval(splscr_mv);
+  let splscr = document.getElementById('splashscreen');
+  splscr.className = 'fade';
+  setTimeout(() => {splscr.style.display = 'none'}, 1000);
   setInterval(point, 10);
-  document.getElementById('nick').click();
-})();
+}
+
+window.addEventListener('keypress', (e) => {
+  if (e.keyCode === 13 || e.which === 13) {
+    e.preventDefault();
+    startgame();
+  }
+})
