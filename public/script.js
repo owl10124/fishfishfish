@@ -10,7 +10,7 @@ function rotate_point(pointX, pointY, originX, originY, angle) {
     (pointX - originX) + Math.cos(angle) * (pointY - originY) + originY
   ];
 }
-var canvas = document.getElementById("canvas");
+const canvas = document.getElementById("canvas");
 
 function fast() {
   speed = 20;
@@ -19,11 +19,10 @@ function fast() {
 function slow() {
   speed = 5;
 }
-var ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 var speed = 5;
-var colors = ["red", "orange", "gold", "green", "blue", "purple"]
-var food = []
-var halfSize = 5
+const colors = ["#fc6c50", "#fc9750", "#fcd350", "#81ff7c", "#b5fccc", "#99c0ff", "#6375ff", "#ab7aff", "#eeb7ff"];
+var food = [];
 
 function makeFood(x, y, size, color) {
   food.push([x, y, size, color])
@@ -35,7 +34,7 @@ function render() {
     ctx.beginPath();
     ctx.arc(food[i][0] - player.x, food[i][1] - player.y, food[i][2], 0, 2 * Math.PI, false);
     ctx.shadowColor = food[i][3];
-    ctx.shadowBlur = Math.floor(Math.random() * 10) + 5;
+    ctx.shadowBlur = Math.floor(Math.random() * 20) + 10;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.fillStyle = food[i][3];
@@ -44,7 +43,7 @@ function render() {
     ctx.stroke();
     ctx.fill()
     if (Math.abs(food[i][0] - player.x - canvas.width / 2) < 40 && Math.abs(food[i][1] - player.y - canvas.height /
-        2) < 40) {
+        2) < 40*player.size) {
       console.log("Yay")
       food.splice(i, 1)
       player.size += 0.01
@@ -117,7 +116,7 @@ function point() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
   while (food.length<5000) {
-    makeFood(Math.floor((Math.random() - 0.5) * 10000), Math.floor((Math.random() - 0.5) * 10000), halfSize * 2, colors[Math.floor(Math.random() * colors.length)]);
+    makeFood(Math.floor((Math.random() - 0.5) * 10000), Math.floor((Math.random() - 0.5) * 10000), 3*(Math.random()+1), colors[Math.floor(Math.random() * colors.length)]);
   }
 
   render();
