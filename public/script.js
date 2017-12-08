@@ -157,4 +157,8 @@ function point() {
   player.x += Math.sin(mouseAngle) * speed;
   player.y -= Math.cos(mouseAngle) * speed;
 }
-setInterval(point, 10);
+
+(function(){
+  setInterval(point, 10);
+  document.getElementById('nick').click();
+})();
