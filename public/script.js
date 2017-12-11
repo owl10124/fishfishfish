@@ -169,6 +169,7 @@ function startgame() {
   clearInterval(splscr_mv);
   let splscr = document.getElementById('splashscreen');
   splscr.className = 'fade';
+  canvas.className = 'unblur';
   setTimeout(() => {splscr.style.display = 'none'}, 1000);
   setInterval(point, 10);
 }

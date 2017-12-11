@@ -10,6 +10,7 @@ html, body {
 
 #splashscreen {
   position: absolute;
+  z-index: 2;
   background-color: rgba(204, 204, 204, 0.5);
   width: 100%;
   height: 100%;
@@ -141,4 +142,9 @@ text {
 
 canvas {
   display: block;
+  filter: blur(5px);
+}
+
+canvas.unblur {
+  filter: none;
 }
