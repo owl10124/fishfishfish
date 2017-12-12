@@ -174,11 +174,13 @@ function startgame() {
   setInterval(point, 10);
 }
 
-window.addEventListener('keypress', (e) => {
-  if (e.keyCode === 13 || e.which === 13) {
-    e.preventDefault();
-    startgame();
-  }
-})
+(function() {
+  setTimeout(function(){document.getElementById("nick").focus()}, 100);
 
-setTimeout(function(){document.getElementById("nick").focus();});
+  window.addEventListener('keypress', (e) => {
+    if (e.keyCode === 13 || e.which === 13) {
+      e.preventDefault();
+      startgame();
+    }
+  });
+})();
