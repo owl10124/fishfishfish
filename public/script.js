@@ -181,6 +181,4 @@ window.addEventListener('keypress', (e) => {
   }
 })
 
-$(function(){
-  setTimeout(function(){$("#nick").focus();},100);
-})
+setTimeout(function(){document.getElementById("nick").focus();});
