@@ -52,7 +52,16 @@ text {
 
 @media screen and (max-width: 768px) {
   text {
-    font-size: 10vw;
+    font-size: 10vw !important;
+  }
+
+  #nick {
+    font-size: 3vw !important;
+    padding: 2vw 3vw !important;
+  }
+
+  #submit {
+    font-size: 4vw !important;
   }
 }
 
