@@ -50,6 +50,12 @@ text {
           animation: draw 10s forwards;
 }
 
+@media screen and (max-width: 768px) {
+  text {
+    font-size: 10vw;
+  }
+}
+
 @-webkit-keyframes draw {
   100% { stroke-dashoffset: 0; fill: rgba(255,255,255,0.8); }
 }
@@ -71,7 +77,9 @@ text {
   margin: 18% auto;
 
   width: 20%;
+  min-width: fit-content;
   height: 4%;
+  min-height: fit-content;
 
   font-size: 1.2em;
   font-family: rifficbold;
@@ -107,7 +115,9 @@ text {
   margin: -15% auto;
 
   width: 10%;
+  min-width: fit-content;
   height: 7%;
+  min-height: fit-content;
 
   font-size: 1.5em;
   font-family: rifficbold;
