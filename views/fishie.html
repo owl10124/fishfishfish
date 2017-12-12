@@ -3,11 +3,22 @@
 
 <head>
   <title>pond</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
 </head>
 
 <body>
+  <link rel="stylesheet" type="text/css" href="font.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <canvas id="canvas" onmousedown="fast()" onmouseup="slow()" onmousemove="checkXY(event)">I'm very sorry, but your browser does not support this game.</canvas>
+  <div id="wrapper">
+    <div id="splashscreen">
+      <svg>
+        <text x="50%" y="50%" text-anchor="middle" fill="none" alignment-baseline="middle">fish. fish. fish.</text>
+      </svg>
+      <input id="nick" placeholder="Enter a nickname">
+      <button id="submit" onclick="startgame()">Play!</button>
+    </div>
+    <canvas id="canvas" onmousedown="fast()" onmouseup="slow()">I'm very sorry, but your browser does not support this game.</canvas>
+  </div>
   <script src="script.js" type="text/javascript"></script>
 </body>
 

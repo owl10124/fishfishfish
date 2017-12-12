@@ -1,9 +1,10 @@
 var mouseX = 0;
 var mouseY = 0;
-var checkXY = function (e) {
+
+window.addEventListener('mousemove', (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
-}
+})
 
 function rotate_point(pointX, pointY, originX, originY, angle) {
   return [Math.cos(angle) * (pointX - originX) - Math.sin(angle) * (pointY - originY) + originX, Math.sin(angle) *
@@ -161,4 +162,29 @@ function point() {
   if (player.y+canvas.height/2>5000) player.y=5000-canvas.height/2;
   if (player.y+canvas.height/2<-5000) player.y=-5000-canvas.height/2;
 }
-setInterval(point, 10);
+
+var splscr_mv = setInterval(() => {
+  point();
+  player.x = 0;
+  player.y = 0;
+}, 10);
+
+function startgame() {
+  clearInterval(splscr_mv);
+  let splscr = document.getElementById('splashscreen');
+  splscr.className = 'fade';
+  canvas.className = 'unblur';
+  setTimeout(() => {splscr.style.display = 'none'}, 1000);
+  setInterval(point, 10);
+}
+
+(function() {
+  setTimeout(function(){document.getElementById("nick").focus()}, 100);
+
+  window.addEventListener('keypress', (e) => {
+    if (e.keyCode === 13 || e.which === 13) {
+      e.preventDefault();
+      startgame();
+    }
+  });
+})();
