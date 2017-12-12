@@ -180,3 +180,7 @@ window.addEventListener('keypress', (e) => {
     startgame();
   }
 })
+
+$(function(){
+  setTimeout(function(){$("#nick").focus();},100);
+})
